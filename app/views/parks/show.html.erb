@@ -13,6 +13,11 @@
           <%= dino.name %>
           <%= link_to '+', dinosaur_path(dino), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'card-remove-link' %>
         </div>
+        <% last_completed = dino.completions.last %>
+        <% if last_completed %>
+          <p class='mb-0'><em><%= last_completed.chore.name %></em> completed on <%= last_completed.created_at.strftime('%B %d, %Y %l:%M %p') %></p>
+        <% end %>
+        <%= link_to 'Complete a chore', new_dinosaur_completion_path(dino) %>
       </div>
     <% end %>
   </div>

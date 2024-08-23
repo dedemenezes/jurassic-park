@@ -13,8 +13,11 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :parks, only: [:show] do
-    resources :dinosaurs, only: [:create]
+    resources :dinosaurs, only: [:create] do
+    end
   end
 
-  resources :dinosaurs, only: %i[destroy]
+  resources :dinosaurs, only: %i[destroy] do
+    resources :completions, only: %i[new create]
+  end
 end
